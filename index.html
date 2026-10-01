@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catálogo de Produtos | JA Saúde Animal</title>
+  <meta name="description" content="Catálogo de produtos da JA Saúde Animal. Encontre o produto e baixe o folheto técnico.">
+  <meta name="theme-color" content="#0a4a2e">
+  <link rel="icon" type="image/png" href="img/logo/logo-ja.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <div class="container topo__conteudo">
+      <a class="topo__logo" href="./" aria-label="JA Saúde Animal – início">
+        <img src="img/logo/logo-ja-horizontal-branco.png" alt="JA Saúde Animal" width="900" height="153">
+      </a>
+      <h1 class="topo__titulo">Catálogo de produtos</h1>
+      <p class="topo__texto">Escolha o produto e toque nele para baixar o folheto técnico.</p>
+    </div>
+  </header>
+
+  <div class="barra">
+    <div class="container barra__conteudo">
+      <label class="busca">
+        <span class="sr-only">Buscar produto</span>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="search" id="busca" placeholder="Buscar produto" autocomplete="off">
+      </label>
+      <nav class="chips" id="categorias" aria-label="Categorias"></nav>
+    </div>
+  </div>
+
+  <main class="container" id="catalogo" aria-live="polite"></main>
+
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <img src="img/logo/logo-ja-branco.png" alt="JA Saúde Animal" width="600" height="443" class="rodape__logo">
+      <div class="rodape__info">
+        <p><strong>Central de Atendimento</strong></p>
+        <p><a href="tel:08007744334">0800 774 4334</a> &nbsp;|&nbsp; <a href="tel:+551631459920">(16) 3145-9920</a></p>
+        <p><a href="https://www.jasaudeanimal.com.br" target="_blank" rel="noopener">www.jasaudeanimal.com.br</a></p>
+      </div>
+      <p class="rodape__copy">© <span id="ano"></span> JA Saúde Animal. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="data/produtos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+IMAGENS DOS PRODUTOS
+====================
+Coloque aqui as fotos, em formato quadrado (1:1), por exemplo 1000x1000 px.
+Use EXATAMENTE o nome abaixo (minúsculo). Extensões aceitas: .jpg  .png  .webp  .jpeg
+
+Arquivos esperados:
+
+bloc.jpg   ->  BLOC
+dettovet.jpg   ->  Dettovet
+egg-ppu.jpg   ->  EGG PPU
+equisedan.jpg   ->  Equisedan
+lidocol.jpg   ->  Lidocol
+dexa-ja.jpg   ->  Dexa-JA
+diclofenaco-ja.jpg   ->  Diclofenaco JA
+flumax.jpg   ->  Flumax®
+prador.jpg   ->  Prador®
+vetprofen.jpg   ->  Vetprofen
+agrothal.jpg   ->  Agrothal
+amox-la.jpg   ->  Amox L.A
+benzafort-12-milhoes.jpg   ->  Benzafort® 12 Milhões
+cetofur.jpg   ->  Cetofur®
+cursotril.jpg   ->  Cursotril
+diclopen-5-milhoes.jpg   ->  Diclopen 5 milhões®
+diclopen-10-milhoes.jpg   ->  Diclopen 10 milhões®
+diclotril.jpg   ->  Diclotril®
+enro10.jpg   ->  Enro 10
+gentopen.jpg   ->  Gentopen®
+paracurso.jpg   ->  Paracurso
+pro-bezerro.jpg   ->  Pró-Bezerro®
+prontostrep.jpg   ->  Prontostrep®
+tormicina-100.jpg   ->  Tormicina 100
+tormicina-la.jpg   ->  Tormicina LA
+vetipen-la.jpg   ->  Vetipen LA
+vetsulfa.jpg   ->  Vetsulfa
+albendathor-10.jpg   ->  Albendathor 10
+albendathor-injetavel.jpg   ->  Albendathor Injetável
+doragold.jpg   ->  Doragold
+duplatak.jpg   ->  Duplatak
+eprigold.jpg   ->  Eprigold
+equijet.jpg   ->  Equijet®
+frigoboi-facilite.jpg   ->  Frigoboi® Facilite
+frigoboi-producao.jpg   ->  Frigoboi® Produção
+ganavet-plus.jpg   ->  Ganavet® Plus
+imidovet.jpg   ->  Imidovet
+insemax-pour-on.jpg   ->  Insemax® Pour-on
+iverequi.jpg   ->  IverEqui
+ivermectina-1-ja.jpg   ->  Ivermectina 1% JA
+longamectina-premium-35.jpg   ->  Longamectina® Premium 3,5%
+proverme.jpg   ->  Proverme
+proverme-injetavel.jpg   ->  Proverme Injetável
+rambo-pulverizacao.jpg   ->  Rambo Pulverização
+trifon-50.jpg   ->  Trifon 50
+adethor.jpg   ->  Adethor
+ative-ade.jpg   ->  Ative A.D.E
+calfomag.jpg   ->  Calfomag
+catofos-b12.jpg   ->  Catofós® B12
+ferrodex.jpg   ->  Ferrodex
+ferrodex-b12.jpg   ->  Ferrodex B12
+glicoton-b12.jpg   ->  Glicoton B12
+hidralac.jpg   ->  Hidralac
+probacter-bezerro.jpg   ->  Probacter Bezerro
+probacter-bov.jpg   ->  Probacter Bov
+turbocalcio.jpg   ->  Turbocálcio
+vitagold-avicola.jpg   ->  Vitagold Avícola
+vitagold-potenciado.jpg   ->  Vitagold Potenciado
+mastclin.jpg   ->  Mastclin®
+mastite-clinica-vl.jpg   ->  Mastite Clínica VL®
+benzogest.jpg   ->  Benzogest®
+cioton.jpg   ->  Cioton®
+lactocina.jpg   ->  Lactocina®
+metrifim.jpg   ->  Metrifim®
+profertil.jpg   ->  Profertil
+prolacton.jpg   ->  Prolacton
