@@ -1,13 +1,6 @@
-/* =====================================================================
-   Catálogo JA Saúde Animal — lógica
-   Normalmente você NÃO precisa mexer aqui. Os produtos ficam em
-   data/produtos.js e as imagens em img/produtos/.
-   ===================================================================== */
-
 (function () {
   "use strict";
 
-  // ---- Configurações simples ----
   var PASTA_IMAGENS = "img/produtos/";
   var EXTENSOES = ["jpg", "png", "webp", "jpeg"]; // ordem de tentativa
 
@@ -16,15 +9,18 @@
   var produtos = dados.produtos;
 
   var elCatalogo = document.getElementById("catalogo");
-  var elChips = document.getElementById("categorias");
+  var elMenu = document.getElementById("categorias");
   var elBusca = document.getElementById("busca");
+  var elAbrirMenu = document.getElementById("abrirMenu");
+  var elCatAtual = document.getElementById("catAtual");
+  var elLayout = document.getElementById("layout");
+  var elBanner = document.getElementById("bannerImg");
 
   var estado = {
     categoria: categoriaDoHash(),
     termo: ""
   };
 
-  // ---- Utilidades ----
   function normalizar(texto) {
     return String(texto || "")
       .normalize("NFD")
@@ -59,7 +55,6 @@
     '<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>' +
     '<path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
-  // ---- Filtro ----
   function produtosFiltrados() {
     var termo = normalizar(estado.termo.trim());
     return produtos.filter(function (p) {
@@ -69,7 +64,6 @@
     });
   }
 
-  // ---- Renderização ----
   function htmlCard(p) {
     var base = p.imagem ? "" : PASTA_IMAGENS + p.id;
     var src = p.imagem ? PASTA_IMAGENS + p.imagem : base + "." + EXTENSOES[0];
@@ -98,30 +92,29 @@
     );
   }
 
-  function renderChips() {
+  function renderMenu() {
     var contagem = {};
     produtos.forEach(function (p) {
       contagem[p.categoria] = (contagem[p.categoria] || 0) + 1;
     });
 
-    var html = chip("todos", "Todos", produtos.length);
-    categorias.forEach(function (c) {
-      if (contagem[c.id]) html += chip(c.id, c.nome, contagem[c.id]);
-    });
-    elChips.innerHTML = html;
-
-    // Se o hash apontar para uma categoria que não existe/está vazia, volta para "todos"
     if (estado.categoria !== "todos" && !contagem[estado.categoria]) {
       estado.categoria = "todos";
-      renderChips();
     }
+
+    var html = itemMenu("todos", "Todos", produtos.length);
+    categorias.forEach(function (c) {
+      if (contagem[c.id]) html += itemMenu(c.id, c.nome, contagem[c.id]);
+    });
+    elMenu.innerHTML = html;
+    atualizarMenu();
   }
 
-  function chip(id, nome, qtd) {
+  function itemMenu(id, nome, qtd) {
     return (
-      '<button type="button" class="chip" data-cat="' + esc(id) + '" ' +
+      '<button type="button" class="menu__item" data-cat="' + esc(id) + '" ' +
       'aria-pressed="' + (estado.categoria === id) + '">' +
-      esc(nome) + ' <span class="chip__qtd">' + qtd + "</span></button>"
+      "<span>" + esc(nome) + '</span><span class="menu__qtd">' + qtd + "</span></button>"
     );
   }
 
@@ -150,15 +143,26 @@
     elCatalogo.innerHTML = html;
   }
 
-  function atualizarChips() {
-    Array.prototype.forEach.call(elChips.querySelectorAll(".chip"), function (b) {
-      b.setAttribute("aria-pressed", String(b.dataset.cat === estado.categoria));
+  function atualizarMenu() {
+    var nomeAtual = "Todos";
+    Array.prototype.forEach.call(elMenu.querySelectorAll(".menu__item"), function (b) {
+      var ativo = b.dataset.cat === estado.categoria;
+      b.setAttribute("aria-pressed", String(ativo));
+      if (ativo) nomeAtual = b.firstChild.textContent;
     });
+    elCatAtual.textContent = nomeAtual;
   }
 
-  // ---- Eventos ----
+  function fecharMenuMobile() {
+    elMenu.classList.remove("aberto");
+    elAbrirMenu.setAttribute("aria-expanded", "false");
+  }
 
-  // Imagem não encontrada: tenta a próxima extensão; se acabar, remove (fica o logo de fundo)
+  function rolarParaProdutos() {
+    var alvo = elLayout.getBoundingClientRect().top + window.scrollY - 12;
+    if (window.scrollY > alvo) window.scrollTo({ top: alvo });
+  }
+
   elCatalogo.addEventListener("error", function (e) {
     var img = e.target;
     if (!img || img.tagName !== "IMG") return;
@@ -171,15 +175,42 @@
       img.remove();
     }
   }, true);
+   
+  if (elBanner) {
+    var tentouSemSource = false;
 
-  elChips.addEventListener("click", function (e) {
-    var btn = e.target.closest(".chip");
+    var erroBanner = function () {
+      if (!elBanner.parentNode) return; // já foi removido
+      var sources = elBanner.parentNode.querySelectorAll("source");
+      if (sources.length && !tentouSemSource) {
+        tentouSemSource = true;
+        Array.prototype.forEach.call(sources, function (s) { s.remove(); });
+        var src = elBanner.getAttribute("src");
+        elBanner.removeAttribute("src");
+        elBanner.setAttribute("src", src);
+      } else {
+        elBanner.remove();
+      }
+    };
+
+    elBanner.addEventListener("error", erroBanner);
+    if (elBanner.complete && elBanner.naturalWidth === 0) erroBanner();
+  }
+
+  elAbrirMenu.addEventListener("click", function () {
+    var aberto = elMenu.classList.toggle("aberto");
+    elAbrirMenu.setAttribute("aria-expanded", String(aberto));
+  });
+
+  elMenu.addEventListener("click", function (e) {
+    var btn = e.target.closest(".menu__item");
     if (!btn) return;
     estado.categoria = btn.dataset.cat;
     history.replaceState(null, "", estado.categoria === "todos" ? location.pathname + location.search : "#" + estado.categoria);
-    atualizarChips();
+    atualizarMenu();
+    fecharMenuMobile();
     renderCatalogo();
-    window.scrollTo({ top: 0 });
+    rolarParaProdutos();
   });
 
   elBusca.addEventListener("input", function () {
@@ -193,18 +224,17 @@
     estado.termo = "";
     elBusca.value = "";
     history.replaceState(null, "", location.pathname + location.search);
-    atualizarChips();
+    atualizarMenu();
     renderCatalogo();
   });
 
   window.addEventListener("hashchange", function () {
     estado.categoria = categoriaDoHash();
-    atualizarChips();
+    atualizarMenu();
     renderCatalogo();
   });
 
-  // ---- Início ----
   document.getElementById("ano").textContent = new Date().getFullYear();
-  renderChips();
+  renderMenu();
   renderCatalogo();
 })();
