@@ -1,0 +1,14 @@
+BANNER DO TOPO
+==============
+
+Coloque aqui as duas imagens, com EXATAMENTE estes nomes:
+
+  banner.jpg         -> computador/tablet   1920 x 400 px  (proporção 24:5)
+  banner-mobile.jpg  -> celular              800 x 400 px  (proporção 2:1)
+
+Dicas:
+- O banner mobile é opcional. Se não existir, o site usa o banner.jpg também no celular.
+- Deixe textos e logos importantes no CENTRO da imagem: nas telas menores as
+  bordas podem ser cortadas.
+- Mantenha cada arquivo abaixo de ~300 KB para o site carregar rápido.
+- Para usar .png ou .webp, troque a extensão no index.html (procure por "BANNER").
